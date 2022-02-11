@@ -25,23 +25,23 @@ defmodule Guess do
   def play(picked_num) do
     IO.gets("I have my number. What is your guess? ")
     |> parse_input()
-    |> guess(picked_num)
+    |> guess(picked_num, 1)
   end
 
-  def guess(usr_guess, picked_num) when usr_guess > picked_num do
+  def guess(usr_guess, picked_num, count) when usr_guess > picked_num do
     IO.gets("Too high. Guess again: ")
     |> parse_input()
-    |> guess(picked_num)
+    |> guess(picked_num, count + 1)
   end
 
-  def guess(usr_guess, picked_num) when usr_guess < picked_num do
+  def guess(usr_guess, picked_num, count) when usr_guess < picked_num do
     IO.gets("Too low. Guess again: ")
     |> parse_input()
-    |> guess(picked_num)
+    |> guess(picked_num, count + 1)
   end
 
-  def guess(_usr_guess, _picked_num) do
-    IO.puts("You got it!")
+  def guess(_usr_guess, _picked_num, count) do
+    IO.puts("You got it #{count} guess!")
   end
 
   def parse_input(:error) do
