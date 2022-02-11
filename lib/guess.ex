@@ -42,6 +42,15 @@ defmodule Guess do
 
   def guess(_usr_guess, _picked_num, count) do
     IO.puts("You got it #{count} guess!")
+    show_score()
+  end
+
+  def show_score() do
+    %{
+      (1..1) => "You're a mind rider!",
+      (2..4) => "Most impresive",
+      (3..6) => "You can do better than that"
+    }
   end
 
   def parse_input(:error) do
