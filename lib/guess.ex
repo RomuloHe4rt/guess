@@ -11,9 +11,14 @@ defmodule Guess do
 
     IO.gets("Pick a difficult level (1, 2 or 3): ")
     |> parse_input()
+    |> pickup_number()
+    |> IO.inspect()
+  end
+
+  def pickup_number(level) do
+    level
     |> get_range()
     |> Enum.random()
-    |> IO.inspect()
   end
 
   def parse_input(:error) do
