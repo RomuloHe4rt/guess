@@ -44,12 +44,16 @@ defmodule Guess do
     show_score(count)
   end
 
+  def show_score(guesses) when guesses > 6 do
+    IO.puts("Better luck next time!")
+  end
+
   def show_score(guesses) do
     {_, msg} =
       %{
         (1..1) => "You're a mind rider!",
-        (2..4) => "Most impresive",
-        (3..6) => "You can do better than that"
+        (2..4) => "Most impresive!",
+        (3..6) => "You can do better than that!"
       }
       |> Enum.find(fn {range, _} ->
         Enum.member?(range, guesses)
