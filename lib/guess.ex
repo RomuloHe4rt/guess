@@ -12,6 +12,7 @@ defmodule Guess do
     IO.gets("Pick a difficult level (1, 2 or 3): ")
     |> parse_input()
     |> pickup_number()
+    |> play()
     |> IO.inspect()
   end
 
@@ -19,6 +20,28 @@ defmodule Guess do
     level
     |> get_range()
     |> Enum.random()
+  end
+
+  def play(picked_num) do
+    IO.gets("I have my number. What is your guess? ")
+    |> parse_input()
+    |> guess(picked_num)
+  end
+
+  def guess(usr_guess, picked_num) when usr_guess > picked_num do
+    IO.gets("Too high. Guess again: ")
+    |> parse_input()
+    |> guess(picked_num)
+  end
+
+  def guess(usr_guess, picked_num) when usr_guess < picked_num do
+    IO.gets("Too low. Guess again: ")
+    |> parse_input()
+    |> guess(picked_num)
+  end
+
+  def guess(_usr_guess, _picked_num) do
+    IO.puts("You got it!")
   end
 
   def parse_input(:error) do
